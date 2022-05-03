@@ -1,0 +1,27 @@
+% Add an appendix section explicitly to toc
+\addtocontents{toc}{\protect\contentsline{chapter}{Appendixes}{}{}}
+\pdfbookmark{Appendixes}{appendixes}
+\begin{sectionBegin}
+    APPENDIXES
+\end{sectionBegin}
+~
+\pagestyle{empty}
+\clearpage
+
+%---------------------------------------
+% Appendix sources
+%---------------------------------------
+% Appendix style 
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\textsc{\nouppercase{\leftmark}}}
+\fancyhead[RO]{\textsc{\nouppercase{\leftmark}}}
+\fancyfoot[C]{\thepage}
+
+\input{app-chisel}
+\cleardoublepage
+\input{app-benchmark}
+\cleardoublepage
+\input{app-resource}
+\cleardoublepage
+\input{app-quick}

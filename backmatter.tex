@@ -1,0 +1,37 @@
+\labelchapter{backmatter}
+\addtocontents{toc}{\protect\contentsline{chapter}{Backmatter}{}{}}
+
+%---------------------------------------
+% Publications
+%---------------------------------------
+\pagestyle{empty}
+\clearpage
+\phantomsection
+\input{back-publications}
+
+%---------------------------------------
+% Glossaire
+%---------------------------------------
+\clearpage
+\phantomsection
+\input{back-glossary}
+
+%---------------------------------------
+% References
+%---------------------------------------
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\interlinepenalty=10000
+\Urlmuskip=0mu plus 1mu\relax
+% a custom bibstyle is available, however I don't like it
+% \bibliographystyle{StyleThese}
+\bibliographystyle{alpha}
+\bibliography{thesis}
+
+
+%---------------------------------------
+% Back Page
+%---------------------------------------
+\finalpage{\input{backpage}}
+\let\clearpage\relax

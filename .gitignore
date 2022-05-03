@@ -1,0 +1,4 @@
+tmp/
+*.pdf
+Figures/*.eps
+**/*.~lock*

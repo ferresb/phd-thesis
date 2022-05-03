@@ -1,0 +1,30 @@
+% includes here
+\usetikzlibrary{patterns}
+
+% style here
+
+% figure here
+\scalebox{1.25}{
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Resources},
+    ylabel={Performance},
+    axis lines = middle,
+    x label style={at={(axis description cs:0.5,-0.01)},anchor=north},
+    y label style={at={(axis description cs:-0.01,0.5)},rotate=90,anchor=south},
+    xtick distance=1,
+    ytick distance=1,
+    yticklabels={,,},
+    xticklabels={,,},
+    xmin=0,xmax=5,
+    ymin=0,ymax=5
+]
+
+\addplot [name path=curve,mark=none,smooth] coordinates{(1, 5) (1.01, 4.9) (1.1, 4) (1.25,3.2) (1.5,2.5) (2, 1.8) (2.5,1.45) (3, 1.25) (4, 1.07) (4.9, 1.01) (5, 1)};
+\draw [name path=resource,red] (4, 0) -- (4, 5*\pgfkeysvalueof{/pgfplots/ymax}/6+0.05) node[right=0.2,rotate=-90] (resnode) {Resource constraint} -- (4, \pgfkeysvalueof{/pgfplots/ymax});
+\draw [name path=performance,blue] (0, 3) -- (8*\pgfkeysvalueof{/pgfplots/xmax}/15, 3) node[above=0.1] (perfnode) {Performance constraints} -- (\pgfkeysvalueof{/pgfplots/xmax}, 3);
+\addplot[fill=gray]fill between[of=curve and performance,soft clip={domain=1.3:4}];
+\node (solution) at (2.85,2.32) {Suitable solutions};
+\end{axis}
+\end{tikzpicture}
+}

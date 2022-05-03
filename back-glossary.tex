@@ -1,0 +1,98 @@
+%-------------------------------------------------------------------------------
+\chapter*{Glossary}
+\addcontentsline{toc}{chapter}{Glossary}
+\label{ch.glossary}
+%-------------------------------------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\extraentry}[1]{%
+    .\newline\indent#1
+}
+\newcommand{\glossarySkip}[0]{2.5cm}
+
+\DeclareDocumentCommand\glEntry{m m g}{%
+    {\mySub{\glossarySkip}{#1}{\phantomsection\label{ch.glossary:gl.#1}{\it #2}%
+        \IfNoValueF{#3}{\extraentry{#3.}}}%
+    }\\[0.8cm]%
+}
+
+    \glEntry{API}{Application Programming Interface}{An interface proposed by the developers of programming tools to their users}
+    \glEntry{AxC}{Approximate Computing}{Application domain relying on a simple assertion: most of the applications are redundant enough to allow approximation in the intermediate results, thus some resources can be saved by changing the data representation and using approximate \myAcs{FU}}
+    \glEntry{ASIC}{Application-Specific Integrated Circuit}{An integrated circuit customized for a specific application}
+    \glEntry{BOOM}{Berkeley Out-of-Order Machine}{A \chisel-based generator of RISC-V out-of-order cores \cite{celio_berkeley_2015}}
+    \glEntry{BRAM}{Block Random-Access Memory}{A memory block embedded in the \myAc{FPGA} itself, allowing an access that is quicker than the external memories that may be available}
+    \glEntry{Chisel}{Constructing Hardware in a Scala Embedded Language}{A \scala-based \myAc{HCL} developed at Berkeley since 2012 \cite{bachrach_chisel_2012}}
+    \glEntry{CLB}{Configurable Logic Block}{Basic blocks for Xilinx \myAcs{FPGA}, including both computation resources (\myAcs{LUT}) and memory resources (\myAcs{FF})}
+    \glEntry{CNN}{Convolutional Neural Network}{A neural network model where each neuron is connected to a bounded amount of preceding and succeeding neurons, in contrast to fully connected networks}
+    \glEntry{CPU}{Central Processing Unit}
+    \glEntry{DL}{Deep Learning}{Machine learning methods based on multiple layered networks}
+    \glEntry{DIF}{Decimation In Frequency}{A standard approach for \myAc{FFT} computations, which enables consuming the temporal data in a \myAc{FIFO} fashion}
+    \glEntry{DG}{Directed Graph}
+    % \glEntry{DNN}{Deep Neural Network}
+    \glEntry{DSE}{Design Space Exploration}{A manual or automatic methodology for the exploration of a design space, in order to find the best fit for an algorithm hardware implementation}
+    \glEntry{DSL}{Domain Specific Language}{A programming language targeting a specific domain, and thus embedding very specific features which are keys for the usual computations in this field.
+    \myAcs{DSL} can thus be accelerated using some specific components, and non experts can take advantage of such acceleration}
+    \glEntry{DSP}{Digital Signal Processor}{A computing unit dedicated to digital processing applications}
+    % \glEntry{DPR}{Dynamic Partial Reconfiguration}{Method used to reconfigure a part of the \myAc{FPGA} while it is running, without altering the run of the other parts}
+    % \glEntry{FaaS}{FPGA as a Service}{Service offering access to one or many \myAc{FPGA} to users, which can program it with their custom designs.
+    % It may include various levels of virtualization stacks, from a \tn{bare-metal} access to custom \tn{frameworks} for virtualization and resrouce sharing}
+    \glEntry{FIFO}{First-In First-Out}{A data structure in which data are consumed in their order of arrival}
+    \glEntry{FIR Filter}{Finite Impulse Response Filter}{A class of representative algorithms of signal processing.
+    It is a digital filter using a finite number of coefficients}
+    \glEntry{FIRRTL}{Flexible Intermediate Representation for \myAc{RTL}}{The \myLongAc{IR}{Intermediate Representation} used by \chisel}
+\clearpage
+    \glEntry{FF}{Flip Flop}{Basic units of memorization of one bit--- often assimilated to the registers}
+    \glEntry{FFT}{Fast Fourier Transform}{A representative algorithm in the signal processing field. 
+    It converts input data from the time domain to the frequency domain}
+    \glEntry{FPGA}{Field-Programmable Gate Array}{A reconfigurable circuit that is able to behave as any sequential or combinatorial circuit}
+    \glEntry{FPU}{Floating-Point Unit}{Computation units dedicated to floating-point computations, based on the IEEE-754 standard}
+    \glEntry{FSM}{Finite State Machine}
+    \glEntry{FU}{Functional Unit}{Computation units used as the basis of a given architecture}
+    \glEntry{GA}{Genetic Algorithm}{A class of evolutionary algorithms that can be used for optimization and search problem resolution}
+    \glEntry{GEMM}{General Matrix Multiply}{A representative algorithm in the field of linear algebra.
+    It is a generalization of the basic matrix multiplication algorithm}
+    \glEntry{GPU}{Graphical Processing Unit}
+    \glEntry{HCF}{Hardware Construction Framework}{A framework used to compile an entry \myAc{HCL}-based code to a \myAc{RTL} description that can be fed to any low level toolchain.\\
+    \myAcs{HCF} are similar to standard software compilers in their design, using a frontend/transforms/backend separation}
+    \glEntry{HCL}{Hardware Construction Language}{A hardware language enabling the definition of hardware generators instead of hardware designs, to ease the re-utilization of the code, thus speeding-up the hardware development processes}
+    \glEntry{HDL}{Hardware Description Language}{Standard \myAc{RTL} languages, such as \verilog{}, {\bf system-}\verilog{} or \vhdl}
+    \glEntry{HLS}{High Level Synthesis}{A design methodology based on the compilation of algorithmic specification toward a hardware description, to ease and speed-up the hardware development}
+    % \glEntry{HPC}{High Performance Computing}{Application domain dedicated to heavy computations}
+    % \glEntry{HPC}{High Performance Computing}
+    \glEntry{IO}{Input/Output}
+    \glEntry{IR}{Intermediate Representation}{An internal representation used by a compiler to abstract concerns from both the entry language and the target machine}
+    \glEntry{IP}{Intellectual Property (core)}{A reusable unit of logic, often subject to intellectual property laws, used as a functional block in \myAcs{ASIC} and \myAcs{FPGA}}
+    \glEntry{JSON}{JavaScript Object Notation}{A JavaScript-based format for representing textual data}
+    % \glEntry{LFSR}{Linear-Feedback Shift Register}{Digital component used to generate pseudo random number, using a shift register whose input is obtained by applying a linear function on its own output.}
+    \glEntry{LUT}{Look-Up Table}{Basic electronic components, able to model any boolean function for a given amount of inputs (usually 4 or 6).
+    Notably used in the design of recent \myAcs{FPGA}, due to this generic feature}
+    \glEntry{MAC}{Multiply and Accumulate}{A basic pattern of operation used in many domains such as signal processing, image processing or machine learning.
+    It relies on computing a joint addition and multiplication}
+    \glEntry{ML}{Machine Learning}
+    \glEntry{MLP}{Multilayer Perceptron}{A model of fully connected neural networks derived from the original Perceptron model \cite{rosenblatt1958perceptron}}
+    \glEntry{MOP}{Multi-objective Optimization Problem}{As defined by Barone \etal{} \cite{barone_multi-objective_2021}, it is the process of "finding, for some {\it decision variables}, a set of values satisfying {\it imposed constraints}, while optimizing a set of {\it objective functions}" \cite{osyczka1985multicriteria}}
+    \glEntry{NoC}{Network-on-Chip}{A design paradigm which aims at integrating the communication system directly on the chip}
+    % \glEntry{OS}{Operating System}
+    \glEntry{OOP}{Object-Oriented Programming}
+    \glEntry{QECE}{Quick Exploration using Chisel Estimators}{An estimation and exploration framework built as a {\it proof of concept} of the usage of \myAcs{HCL} for \myAc{DSE} \cite{ferres_qece_2021}}
+    \glEntry{QoR}{Quality of Results}{In the context of this thesis, we consider the \myAc{QoR} to be the quality of the proposed estimators with respect to some reference values about circuit properties.
+    A distinction must be done between \myAc{QoR} and \myAc{QoS}, as the second one is an actual property of the circuit while the first one provides insights about the adequacy of the estimation flow with respect to the development environment}
+    \glEntry{QoS}{Quality of Service}{A property of a circuit that exhibits the errors that were introduced by the implementation with respect to the initial algorithm.
+    It is particularly relevant in the context of \myLongAc{AxC}{Approximate Computing}, where one can build more performant designs at the cost of accuracy}
+    \glEntry{RAM}{Random-Access Memory}
+    \glEntry{R2MDC}{Radix-2 Multi-Path Delay Commutator}{A standard technique for \myAc{FFT} optimization. 
+    The proposed implementation is based on a presentation from Gerez \cite{gerez_fft_2012} (itself based on the literature \cite{rabiner1975theory})}
+    \glEntry{RMSE}{Root-Mean-Square Error}{A standard metric defined by computing the relative differences between theoretical and experimental values}
+    \glEntry{RTL}{Register-Transfer Level}{The abstraction level used for hardware development, abstracting low level consideration to only consider signal interactions}
+    \glEntry{ROM}{Read-Only Memory}
+    \glEntry{SoC}{Systems on a Chip}{A single integrated circuit (\myAc{ASIC}) embedding all the needed components - such as memories, \myAc{IO} ports or microprocessors - for a given application}
+    \glEntry{TPU}{Tensor Processing Unit}{An Artificial Intelligence dedicated \myAc{ASIC}}
+    \glEntry{VLSI}{Very Large Scale Integration}{Design processes used to integrate millions of transistors in a chip}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

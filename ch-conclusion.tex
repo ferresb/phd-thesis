@@ -1,0 +1,79 @@
+%-------------------------------------------------------------------------------
+\chapter{Conclusion and Perspectives}
+\labelchapter{ch.conclusion}
+%-------------------------------------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{-0.6cm}
+\lettrine[lines=2]{W}{hile} the life of the software developers has greatly benefited from emerging paradigms and new development methodologies in the past decades, developing a digital circuit remains a daunting task, which requires both expertise and time.
+Initiatives have thus been taken in order to increase the productivity of hardware designers, mostly by providing tools that are able to make the simplest decision in their place, to allow them to focus on the most complex tasks that really requires their skills and knowledges.
+
+Among those initiatives, we propose a new design methodology, which takes the best of an emerging hardware development paradigm --- the hardware construction paradigm --- to build reusable and adaptable designs.
+We put a particular focus on how this new paradigm, which comes with emerging features from the software world itself, can bring more expressivity to the designers, and demonstrate its usage on a key challenge of digital design: the design space exploration, \ie the exploration of the different implementation choices that a designer can make in the process of building a circuit.
+
+To simplify our approach of the problem, we consider exploration processes that target reconfigurable circuits --- more precisely, FPGA boards --- as each implementation technology has its specificities.
+However, the methodologies introduced in this work could be, with few modifications, applied to the development of other digital circuits, such as ASIC, and could consider various levels of granularity, ranging from the development of basic operators to the exploration of complex, multi-core systems.
+
+After providing an analysis of the domain literature, which focuses on three main concerns when it comes to design space exploration --- namely the space exposition, the metric definition and estimations, and the exploration strategies --- we introduce the main contributions of this work.
+
+\vspace{-0.1cm}
+\subsubsection{First contribution}
+First of all, we consider the different metrics of interests that can be used to define the quality of a design, in order to help the users --- or an exploration tool --- to make clever decisions in their design processes.
+We provide some insights about what are the common metrics, and introduce a generic approach to define both application specific and non specific concerns, in order to offer an intelligible yet usable approach of the estimation processes.
+We introduce some estimation methodologies for the key metrics of interests of a hardware implementation: the spatial and temporal aspects, \ie the resource usage and the operating frequency of a FPGA-based implementation.
+
+We also introduce the quality of service as a domain specific metric, as it can only be used in the fields where result approximations can be used to improve the performances of a circuit at the cost of accuracy, and demonstrate how the proposed tool architecture can be leveraged to integrate exotic yet useful metrics in the development flow.
+
+\subsubsection{Second contribution}
+The second and main contribution of this thesis is then addressed, with the introduction of two complementary design space exploration methodologies, namely {\bf meta design} and {\bf meta exploration}.
+We use the generation feature of the hardware construction languages --- which refers to the action of describing a circuit generator instead of a dedicated, non adaptable accelerator --- and instrument the framework of \chisel, an emerging HCL, to expose clever and concise design spaces and integrate them directly in the code.
+We then provide a formalization of what is a design space exploration strategy, to demonstrate how the functional programming feature --- which is now accessible to the hardware developers, thanks to \chisel{} --- can be used to build custom and controllable strategies that takes the best of the users knowledge and expertise about both the application and the target board.
+A set of basic strategies are provided as a basis, to demonstrate how an iterative approach of the design space exploration problem can lead to an intelligible and concise description of different exploration processes.
+
+\subsubsection{Experiments and results}
+In order to demonstrate how this approach can be used in the daily life of the hardware developers, we developed a \scala-based framework named {\bf QECE} ({\it Quick Exploration using Chisel Estimators}), as \chisel{} is a meta language that is built on \scala.
+We also provide a set of \chisel-based generators for algorithms that are representative of the usage of FPGAs as hardware accelerators.
+The quality of results of the different estimation methodologies is then analysed, using multiple experiments over so-defined benchmark, and the limitations of those methodologies --- which are introduced as a {\it proof of concept} rather than as usable tools --- are discussed.
+We then expose different exploration use cases, and we demonstrate through various experiments that the defined approach can be used to efficiently solve the design space exploration problem, showing that using the users expertise can lead to faster processes, with no significant deterioration of the quality of the solutions.
+
+However, as the work of a single thesis could roughly be enough to address this challenge in a generic way, multiple limitations as well as some ways to overcome them have been identified.
+
+\subsubsection{Limitations and perspectives of evolution}
+To begin with, the quality of the proposed estimation methodologies is questionable, as we do not reach a state of the art quality.
+The introduced framework would thus greatly benefit from integrating performant estimators at various levels of granularity and fidelity, to provide the users with a configurable library of estimation processes that one could use and adapt for a specific use case.
+Recent initiatives have been taken to provide quick and accurate estimations to the users, notably by using machine learning techniques to extract informations from prior estimations \cite{kwon_transfer_2020}, or statistical approaches to limit the number of syntheses to be run \cite{paletti_dovado_2021}, and one should be able to choose and integrate a specific estimation methodology to build their own exploration flow.
+
+Moreover, while we implemented some basic strategies as a {\it proof of concept}, {\bf QECE} should also offer a library of configurable exploration steps, leveraging emerging approaches and algorithms %
+to build efficient exploration strategies.
+Doing so, we could provide further genericity and modularity for the users, and the framework could even be leveraged to evaluate the quality of new exploration strategies, providing quick prototyping for exploration processes.
+For even more modularity, we should also provide a way to integrate external tools at different levels of the framework, for example by using an external software to guide the exploration, as does the \eidea{} framework with Bellerophon, an evolutionary-based search engine \cite{barone_multi-objective_2021}.
+
+Last but not least, we should provide the users with an easy way to visualize the results of an exploration, as solving a multi-objective optimization problem in a multi dimensional space can be very difficult to understand and interpret.
+To do so, Paletti \etal{} \cite{paletti_dovado_2021} propose to integrate some visual models from the literature, such as the roofline model \cite{williams_roofline_2009} or the LogCA model \cite{altaf2017logca}.
+As a matter of fact, the users should be able to visualize both the exploration results and the interesting metrics of a given circuits, as they are the ones that will be able to use quick and accurate feedbacks to make clever decisions that an automatic tool could not.
+
+On another side, to demonstrate the usability of the proposed methodologies, we could benefit from a wider benchmark to analyse different classes of algorithms, showing the generic nature of the approach.
+While we did expose different use cases to exhibit how one can leverage its expertise to define custom exploration strategies relying on different types of metrics of interests (and the corresponding estimation methodologies), more experiments on other scenarios --- and other application domains --- could demonstrate the impact of the algorithms specificities on a given strategy, for example.
+\clearpage
+\noindent More specifically, some people at TIMA lab are working on different approaches to efficiently implement neural network on \myAcs{FPGA}, from the usage of ternary data representations \cite{prost2017scalable} to the integration of \myAc{LUT}-based logarithm multipliers to our own implementation of a configurable \myLongAc{MLP}{Multilayer Perceptron} (Appendix \ref{app.benchmark}).
+Moreover, an industrial collaboration is ongoing with OVHcloud to use \chisel{} to bring more expressivity for the hardware developers \cite{bruant_towards_2021}.
+Such local initiatives could benefit from our exploration framework to enable a quick exploration of the architectural space on different use cases.
+
+Some other applicative domains which relies on heavily parametrized templates for both generation and exploration purposes could also benefit from our work.
+For example, Delomier \etal{} \cite{delomier_model-based_2020} exposes a model-based generator for the implementation of successive cancellation polar decoders on \myAc{FPGA}, and uses \myAc{HLS} to generate efficient accelerators from such model, based on architectural and algorithmic parameters.
+One could thus use our exploration framework to efficiently explore the so-defined design space, after defining the accelerators templates using \chisel.
+In a similar way, Mkhinini \etal{} \cite{mkhinini_hls_2017} leverages \myAc{HLS} to accelerate the computations of modular polynomial multiplications in the context of {\bf Fully Homomorphic Encryptions}, exposing high-level parameters to generate the different architectures.
+Once again, using our exploration methodology and framework could help the users to improve the exploration performances by leveraging their expertise to build efficient strategies.
+
+
+\subsubsection{Synthesizing the contributions}
+Regardless of the limitations that we identified for this work, we provide a modular framework for the estimation and the exploration of design spaces, which relies on an emerging paradigm.
+More generally, we propose an initiative to enhance the expressivity of the hardware developers, giving them the opportunity to use powerful features such as object-oriented and functional programming to describe not only the accelerators to be generated, but also the processes to build and explore them.
+
+{\bf QECE}, a \chisel-based framework for estimation and exploration, as well as a benchmark of applications that were used to demonstrate its usage, are provided as open-source projects \cite{ferres_qece_2021}\cite{ferres_benchmark_2021}.
+It is important to note that the need for a flexible framework for both estimation and comparison of \chisel-based designs has already been expressed in the community, and that we plan on communicating on our solution as soon as possible, notably by proposing different use cases to integrate in the literature.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

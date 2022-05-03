@@ -1,0 +1,46 @@
+%-------------------------------------------------------------------------------
+\chapter{Introduction}
+\labelchapter{ch.intro}
+%-------------------------------------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lettrine[lines=2]{T}{he} usage of digital circuits has grown exponentially for the last decades, and embedded systems can be found everywhere nowadays.
+In fact, the semiconductor industry leverages billions of euros each year, and circuits tend to be smaller, denser and more energy efficient.
+From smartphones to pay machines to super computers, electronic systems are being designed every day, and the number of hardware designers --- which build them --- is increasing accordingly.
+
+However, while the software developers --- which are their counterparts from the computer science world --- have benefited from conceptual advances those past years to improve their productivity, designing a digital circuit remains a daunting task that require both time and expertise.
+
+Initiatives are thus being proposed in order to ease the life of hardware developers, by providing faster processes and simpler ways to describe the behaviour of an electronic system.
+
+Among them, a trend has been growing since the 80's that aim at developing circuits from more abstract descriptions, such as software programs, instead of the verbose languages that are typically used.
+This approach is based on automatic tools that iteratively compare and select circuits, as a given code can be translated in many different ways to actually produce a circuit with the same functionality.
+In order to find a best solution in a set of various circuits, the developers thus rely on the automatic exploration of a space composed of the different designs, which would otherwise be a tedious and long task for them.
+
+Nevertheless, while this approach has grown mature and is now used in industrial processes, it is difficult to provide tools that produce clever decisions during their exploration, and building an efficient software for this task is still widely being investigated in both academic and industrial worlds.
+
+On the other hand, different classes of circuits are to be considered depending on their usage and functioning environment.
+Indeed, the development processes can heavily differ, resulting in the need for specific work flows, depending on both the target technology and the applicative domain.
+
+\clearpage
+While application specific integrated circuits are used in most integrated systems --- such as smartphones and components from the Internet of Things --- some use cases require to be able to modify and adapt the functionality provided by a hardware design.
+
+Among them, {\it Field-Programmable Gate Arrays} ({\bf FPGA}) are reconfigurable circuits that can be used to implement algorithms on digital electronics.
+On such technology, a simple process can be used to change the circuit hosted in the FPGA, in order to modify its functionality.
+Doing so, the computations can be faster than they would be on a standard processor, but the resulting circuit can be modified at any time, rather than being fixed as it is the case with dedicated circuits. 
+
+The adaptability of those reconfigurable circuits makes them excellent candidates for the design of hardware accelerators --- \ie{} digital designs that can be used to speed-up specific computations in many electronic system, while reducing the required power consumption.
+
+Designing a digital circuit is a tedious task relying either on old and time consuming technologies, or on novel approaches which leverages automatic tools but are still limited in their usage --- and it is even more true for FPGA-based implementations, as the heterogeneous structures of the targets make it even more difficult to build generic and reusable designs.
+To cope with those limitations, another approach has emerged recently, improving the older programming languages while avoiding the limitations introduced by using more abstract descriptions.
+This approach leverages recent software techniques, which are adapted to digital design to provide the developers with new methods to describe a circuit.
+
+We present an initiative that leverage recent languages based on this approach to increase the productivity of hardware developers.
+More specifically, we propose an exploration tool that can be configured by the designers to adapt to their use cases, and uses high level features from the software world to bring more expressivity to its users.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

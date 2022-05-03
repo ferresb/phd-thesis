@@ -1,0 +1,178 @@
+\pdfbookmark[0]{Front page}{frontpage}
+
+%----------------------------------------------------------------------
+% Title information
+%----------------------------------------------------------------------
+\Specialite{\textsc{Nano \'Electronique et Nano Technologies}}
+\Arrete{25 mai 2016}
+\Auteur{Bruno FERRES}
+\Directeur{Frédéric \textsc{Rousseau}}{Professeur UGA / Polytech,\\Universit\'e Grenoble Alpes}
+\CoEncadrant{Olivier \textsc{Muller}}{Ma\^itre de Conf\'erences\\Grenoble INP / Ensimag, Universit\'e Grenoble Alpes}
+\Laboratoire{Laboratoire Techniques de l'Informatique et de la Micro\'electronique pour l'Architectures des syst\`emes int\'egr\'es}
+\EcoleDoctorale{l'\'Ecole Doctorale \'Electronique, \'Electrotechnique, Automatique et Traitement du Signal (EEATS)}
+\Titre{Leveraging Hardware Construction\\Languages for Flexible Design\\Space Exploration on FPGA\\~\\\normalsize{Utilisation de langages de construction matérielle pour une\\exploration flexible des espaces de conception sur FPGA}}
+
+\ifodd \value{anonymous}{
+}\else{
+    \Depot{23 mars 2022}
+
+    \Jury{
+
+    \UGTPresidentRapporteur{Sébastien \textsc{Pillement}}{Professeur, Nantes Université}
+
+    \UGTRapportrice{Virginie \textsc{Fresse}}{Maître de Conférences, Université Jean Monnet}
+
+    \UGTExaminateur{Christophe \textsc{Jego}}{Professeur, Bordeaux INP}
+
+    \UGTExaminateur{Régis \textsc{Leveugle}}{Professeur, Grenoble INP}
+
+    \UGTExaminateur{Pierre-Henri \textsc{Horrein}}{Ingénieur Docteur, Responsable Technique FPGA, OVHcloud}
+
+    \UGTDirecteur{Frédéric \textsc{Rousseau}}{Professeur, Université Grenoble Alpes}
+
+    \UGTCoEncadrant{Olivier \textsc{Muller}}{Maître de Conférences, Grenoble INP}
+    }
+}
+\fi
+
+\frontmatter
+\pagenumbering{Roman}
+
+%\maketitle %NE PAS LE METTRE
+\MakeUGthesePDG
+%----------------------------------------------------------------------
+
+\ifodd \value{personal}{
+    \clearpage
+    \pagestyle{empty}
+    ~\\
+    \clearpage
+    \begin{dedication}
+        À Carmen CARRION,\\
+        À Jacques CARRION,\\
+        À Pierrot FERRES,\\
+        Merci pour tout.
+    \end{dedication}
+}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+\clearpage
+\pagestyle{empty}
+~\\
+\clearpage
+\pagestyle{fancy}
+\phantomsection
+\pdfbookmark[0]{Acknowledgements}{acknowledgements}
+\chapter*{Remerciements}
+\ifodd \value{personal}{
+    {\small
+        Tout d'abord, je souhaite remercier mes encadrants pour leur suivi, leurs conseils et leur compréhension pendant toute la durée de ma thèse.
+        Je remercie en premier lieu Olivier, qui m'a donné l'envie d'enseigner lors de mon passage à l'Ensimag, et qui m'a accompagné pendant ces 3 années.
+        Merci pour sa pleine confiance en mes capacités, même quand je ne m'en sentais pas capable, et pour toutes les discussions qui ont guidé mes réflexions et mon approche du travail d'enseignant chercheur.
+        Merci également à Frédéric pour la confiance qu'il m'a accordée, pour ses retours toujours pertinent sur mes travaux, et pour le soutien qu'il a pu m'apporter pendant les moments difficiles.
+
+        Je souhaite ensuite remercier Sébastien Pillement et Virginie Fresse, qui ont non seulement accepté de faire parti de mon Comité de Suivi Individuel, mais aussi de rapporter sur mes travaux au terme de ces trois années --- merci aussi à M. Pillement d'avoir accepté de présider le jury, au vu des circonstances particulières de la soutenance.
+        Merci également à Christophe Jego et à Régis Leveugle pour leurs rôles d'examinateurs sur mes travaux, et à Pierre-Henri Horrein pour les interactions que l'on a pu avoir pendant ces trois années ainsi que pour sa participation lors de la soutenance.
+
+        Je remercie toute l'équipe SLS, qui m'a accueilli, conseillé et écouté, que ce soit sur la teneur de mes travaux ou sur mes ambitions par la suite.
+        Merci donc à Breytner, Arthur V., Arthur P., Julie, Liliana, Frédéric P., Laurence P., Marie, Nathan, Adrien, Ana, Enzo, Thomas, Maxime C., Tiago, Luc, Clément, Damien, Arief, Georgios, Paul et Maxime M. de m'avoir aidé, de près ou de loin, durant ces trois années --- merci également à Anne-Laure, Laurence B., Frédéric C. et Ahmed pour leur soutien précieux, qu'il soit technique ou administratif.
+        Un merci particulier à Jean pour son aide précieuse, ses conseils toujours pertinents, et sa bonne humeur générale.
+        Une pensée émue, également, à tous les meubles du 4\textsuperscript{ème} étage, partis bien trop tôt, mais jamais sans efforts.
+
+        Je remercie également les membres des équipes pédagogiques de l'Ensimag et de Polytech de m'avoir accepté dans leurs rangs --- merci à Florence, Lionel, Claire, Frédéric P., Olivier, Sébastien, Frédéric R. et Liliana.
+
+        Je remercie mes ami·es pour leur soutien sans faille pendant certaines périodes difficiles, et notamment Manon et Nicolas qui ont vécu cette aventure en même temps que moi, et qui ont su m'écouter et me conseiller quand j'en ai eu besoin.
+
+        Evidemment, je remercie grandement ma famille pour leur confiance et leur soutien toutes ses années. Merci Maman, merci Papa, merci Laurent, et le reste de cette grande famille.
+
+        Enfin, merci à Wendy, qui me soutient, m'écoute, me conseille et surtout me supporte depuis toutes ces années.
+        Sans elle, ce manuscrit n'existerait pas.
+    }
+}
+\fi
+
+%-------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-------------------------------------------------------------------------------
+\clearpage
+\phantomsection
+\pdfbookmark[0]{Abstract}{abstract}
+\chapter*{Abstract}
+\lettrine[lines=2]{I}{n} a world where the required computational capacitities grow exponentially, FPGA-based hardware accelerators are imposing themselves as energy efficient alternatives to general purpose CPUs.
+However, while the software development methodologies can rely on new paradigms and techniques to improve the productivity, designing a digital circuit remains a daunting task where both expertise and time are primordial.
+
+In order to increase the productivity of hardware developers, we explore the possibility of using a novel design paradigm called Hardware Construction Languages, which enables building parametrized design generators --- increasing both code reusability and parametrization --- and exploiting high level features such as object-oriented or functional programming.
+
+The first contribution of this project aims at easing comparison of accelerators by exposing different estimation metrics and methodologies, in order to provide designers and tools with interesting feedbacks.
+
+We then consider leveraging this new paradigm to generate and compare accelerators --- introducing two complementary methodologies: {\it meta design} and {\it meta exploration}.
+Meta design is based on the prior analysis of a given algorithm to implement a parametrized design generator, where every generated design belongs to a design space to be explored.
+Meta exploration is then used to leverage the users expertise of both application domain and target execution board for an efficient exploration of so defined design space.
+
+We choose Chisel as an HCL candidate, and introduce QECE --- {\it Quick Exploration using Chisel Estimators} --- as a demonstrator for both contributions.
+As Chisel is built on top of Scala, we hence bring high level features from software development to the hardware world.
+We finally leverage the introduced methodologies by developing various representative FPGA applicative kernels, and expose various {\it scenarii} of estimation and exploration.
+
+% This thesis is an initiative to enhance hardware developers expressivity, providing them with powerful features such as functional programming and object-oriented development.
+
+%-------------------------------------------------------------------------------
+
+%\cleardoublepage
+\clearpage
+\phantomsection
+\pdfbookmark[0]{Résumé (Français)}{resume}
+\chapter*{Résumé}
+{\fontsize{11.45pt}{13.5pt}\selectfont 
+\lettrine[lines=2]{D}{ans} un monde où le besoin de ressources de calcul croit exponentiellement, les accélérateurs matériels à base de FPGA s'imposent comme alternatives à haute efficacité énergétique aux processeurs généralistes.
+Cependant, alors que les méthodes de développement logiciel profitent de nouveaux paradigmes pour améliorer la productivité, la conception de circuits numériques demeure une tâche compliquée où le temps et l'expertise restent cruciaux.
+
+Afin d'améliorer la productivité des développeurs matériels, nous explorons la possibilité d'utiliser un nouveau paradigme basé sur les langages de construction matérielle, qui permettent de construire des générateurs paramétriques de circuits, améliorant à la fois la réutilisabilité et la paramétrisation, et d'utiliser des fonctionnalités de haut niveau telles que la programmation orientée objet ou encore la programmation fonctionnelle.
+
+La première contribution de ce projet vise à faciliter la comparaison d'accélérateurs en exposant différentes métriques et méthodologies d'estimation de circuits, afin de fournir aux développeurs et aux outils des retours constructifs sur le processus de développement.
+
+Nous nous intéressons ensuite à l'exploitation de ce nouveau paradigme pour la génération et la comparaison d'architectures, et introduisons deux méthodologies complémentaires: la {\it méta conception} et la {\it méta exploration}.
+La méta conception est basée sur une analyse préalable de l'algorithme cible afin de concevoir un générateur paramétrique de circuits, où chaque implémentation générée s'intègre dans un espace de conception à explorer.
+La méta exploration est ensuite utilisée afin de mettre à profit l'expertise de l'utilisateur à propos du domaine applicatif et du matériel cible, permettant une exploration efficace de l'espace ainsi généré.
+
+Parmi les langages de construction matérielle disponibles, nous choisissons Chisel afin de concevoir QECE --- {\it Quick Exploration using Chisel Estimators} --- comme démonstrateur pour les deux contributions.
+Comme Chisel est basé sur Scala, nous amenons ce faisant des fonctionnalités de haut niveau du développement logiciel au monde du matériel.
+Finalement, nous démontrons l'utilisabilité des méthodologies présentées en développant un ensemble de noyaux applicatifs représentatifs de l'utilisation des FPGA, et en mettant en avant différents scénarios d'estimation et d'exploration.
+
+% Cette thèse est une initiative pour améliorer l'expressivité des développeurs matériels, en leur fournissant des fonctionnalités à fort potentiel telles que la programmation fonctionnelle ou le développement orienté objet.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+\phantomsection
+\pdfbookmark[0]{Table of Contents}{contents}
+\setcounter{tocdepth}{1}
+\dominitoc \tableofcontents
+
+%\cleardoublepage
+\clearpage
+\phantomsection
+\pdfbookmark[0]{List of Figures}{listoffigures}
+\dominilof 
+\listoffigures
+
+
+\clearpage
+\begingroup
+\makeatletter
+\phantomsection
+\pdfbookmark[0]{List of Tables and Listings}{listoftl}
+\chapter*{\hspace{-2cm}List of Tables and Listings}
+\section*{Tables}
+\@starttoc{lot}
+\let\clearpage\relax
+\section*{Listings}
+\@starttoc{lol}
+\let\clearpage\relax
+\makeatother
+\endgroup
+\clearpage
+
+\pagestyle{empty}
